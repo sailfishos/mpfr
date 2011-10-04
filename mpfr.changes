@@ -1,0 +1,21 @@
+* Thu Apr 07 2011 Juha Kallioinen <juha.kallioinen@nokia.com> - 2.4.2
+- use macros in the yaml and spec files
+
+* Tue Apr 05 2011 Juha Kallioinen <juha.kallioinen@nokia.com> - 2.4.2
+- added /usr/share/doc/mpfr to -devel %files
+
+* Tue Apr 05 2011 Juha Kallioinen <juha.kallioinen@nokia.com> - 2.4.2
+- Updated to 2.4.2
+
+* Thu Nov 05 2009 PeterZhu <peter.j.zhu@intel.com> - 2.4.1
+- Remove /usr/share/info/dir in %install
+
+* Fri Apr 03 2009 Passion Zhao <passion.zhao@intel.com> 2.4.1
+- Update to 2.4.1 to fix CVE-2009-0757
+
+* Fri Feb 13 2009 Anas Nashif <anas.nashif@intel.com> 2.4.0
+- Update to 2.4.0
+
+* Thu Dec 18 2008 Arjan van de Ven <arjan@linux.intel.com> 2.3.0
+- Use standard specfile
+
