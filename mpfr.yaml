@@ -7,6 +7,8 @@ License: LGPLv2+ and GPLv2+ and GFDL
 URL: http://www.mpfr.org/
 Sources:
     - http://www.mpfr.org/%{name}-%{version}/%{name}-%{version}.tar.bz2
+Patches:
+    - mpfr-2.4.2-hasmconstraint.patch
 Description: |
     The MPFR library is a C library for multiple-precision floating-point
     computations with "correct rounding". The MPFR is efficient and

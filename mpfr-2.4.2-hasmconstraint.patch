@@ -1,0 +1,60 @@
+From: Aurelien Jarno <aurel32@debian.org>
+To: Debian Bug Tracking System <submit@bugs.debian.org>
+Subject: mpfr/mips(el): FTBFS with gcc-4.4
+Date: Wed, 09 Dec 2009 21:31:57 +0100
+Package: mpfr
+Version: 2.4.2-2
+Severity: serious
+Tags: patch
+Justification: no longer builds from source
+
+mpfr fails to build on mips(el) with gcc-4.4. A full build log can be
+found here:
+https://buildd.debian.org/fetch.cgi?pkg=mpfr&arch=mipsel&ver=2.4.2-2&stamp=1260358474&file=log&as=raw
+
+This is due to a change in GCC 4.4, the h asm constraint is not 
+supported anymore on mips. For more details please see:
+http://gcc.gnu.org/gcc-4.4/changes.html
+
+The patch below fixes the problem by implementing the solution
+recommended the previous web page. With it, mpfr builds and 
+passes the testsuite.
+
+--- mpfr-2.4.2.orig/mpfr-longlong.h
++++ mpfr-2.4.2/mpfr-longlong.h
+@@ -1011,7 +1011,15 @@
+ #endif /* __m88000__ */
+ 
+ #if defined (__mips) && W_TYPE_SIZE == 32
+-#if __GNUC__ > 2 || __GNUC_MINOR__ >= 7
++#if (__GNUC__ >= 5) || (__GNUC__ >= 4 && __GNUC_MINOR__ >= 4)
++#define umul_ppmm(w1, w0, u, v) \
++  do {									\
++    UDItype _r;							\
++    _r = (UDItype) u * v;						\
++    (w1) = _r >> 32;							\
++    (w0) = (USItype) _r;						\
++  } while (0)
++#elif __GNUC__ > 2 || __GNUC_MINOR__ >= 7
+ #define umul_ppmm(w1, w0, u, v) \
+   __asm__ ("multu %2,%3" : "=l" (w0), "=h" (w1) : "d" (u), "d" (v))
+ #else
+@@ -1024,7 +1032,16 @@
+ #endif /* __mips */
+ 
+ #if (defined (__mips) && __mips >= 3) && W_TYPE_SIZE == 64
+-#if __GNUC__ > 2 || __GNUC_MINOR__ >= 7
++#if (__GNUC__ >= 5) || (__GNUC__ >= 4 && __GNUC_MINOR__ >= 4)
++typedef unsigned int UTItype __attribute__ ((mode (TI)));
++#define umul_ppmm(w1, w0, u, v) \
++  do {									\
++    UTItype _r;							\
++    _r = (UTItype) u * v;						\
++    (w1) = _r >> 64;							\
++    (w0) = (UDItype) _r;						\
++  } while (0)
++#elif __GNUC__ > 2 || __GNUC_MINOR__ >= 7
+ #define umul_ppmm(w1, w0, u, v) \
+   __asm__ ("dmultu %2,%3" : "=l" (w0), "=h" (w1) : "d" (u), "d" (v))
+ #else
+
