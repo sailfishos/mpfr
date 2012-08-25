@@ -1,3 +1,10 @@
+* Sat Aug 25 2012 Marko Saukko <marko.saukko@jollamobile.com> - 3.1.1
+- Fixes MER#337: update mpfr to 3.1.0
+- Dropped Build dependencies to autoconf, libtool and mpfr
+- Dropped mpfr-2.4.2-hasmconstraint.patch
+- License change to GPLv3
+- Added "Provides: libmpfr.so.1" to get over SONAME change.
+
 * Fri Nov 11 2011 Carsten Munk <carsten@maemo.org> - 2.4.2
 - Add patch to make MIPS builds work
 
