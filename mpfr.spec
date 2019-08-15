@@ -7,6 +7,8 @@ Group:      System/Libraries
 License:    LGPLv3+ and GPLv3+ and GFDL
 URL:        http://www.mpfr.org/
 Source0:    http://www.mpfr.org/%{name}-%{version}/%{name}-%{version}.tar.xz
+Patch0:     rev11783.patch
+Patch1:     rev11982.patch
 Requires:   gmp >= 4.2.3
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
