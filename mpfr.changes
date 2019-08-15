@@ -1,3 +1,6 @@
+* Thu Aug 15 2019 Niels Breet <niels.breet@jolla.com> - 3.1.6
+- Update to 3.1.6. Contributes to JB#46923
+
 * Sat Aug 25 2012 Marko Saukko <marko.saukko@jollamobile.com> - 3.1.1
 - Fixes MER#337: update mpfr to 3.1.0
 - Dropped Build dependencies to autoconf, libtool and mpfr
