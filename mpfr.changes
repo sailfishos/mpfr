@@ -1,3 +1,7 @@
+* Fri Aug 04 2023 Matti Lehtimäki <matti.lehtimaki@jolla.com> - 4.2.0
+- Update to 4.2.0. JB#61006
+- Package mpfr3 for the transition to new version
+
 * Thu Aug 15 2019 Niels Breet <niels.breet@jolla.com> - 3.1.6
 - Update to 3.1.6. Contributes to JB#46923
 
